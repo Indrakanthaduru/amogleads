@@ -5,6 +5,10 @@ import {
   writeEmail
 } from '@/lib/services';
 import { FormSchema, QualificationSchema } from '@/lib/types';
+import {
+  sendTelegramMessage,
+  formatLeadNotification
+} from '@/lib/telegram';
 
 /**
  * step to qualify the lead
@@ -61,4 +65,18 @@ export const stepHumanFeedback = async (
 
   const slackMessage = await humanFeedback(research, email, qualification);
   return slackMessage;
+};
+
+/**
+ * step to send Telegram notification
+ */
+export const stepTelegramNotification = async (
+  data: FormSchema,
+  research: string,
+  qualification: QualificationSchema
+) => {
+  'use step';
+
+  const message = formatLeadNotification(data, qualification, research);
+  await sendTelegramMessage(message);
 };

@@ -3,6 +3,7 @@ import {
   stepHumanFeedback,
   stepQualify,
   stepResearch,
+  stepTelegramNotification,
   stepWriteEmail
 } from './steps';
 
@@ -22,6 +23,9 @@ export const workflowInbound = async (data: FormSchema) => {
 
   const research = await stepResearch(data);
   const qualification = await stepQualify(data, research);
+
+  // Send Telegram notification immediately after qualification
+  await stepTelegramNotification(data, research, qualification);
 
   if (
     qualification.category === 'QUALIFIED' ||
