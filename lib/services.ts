@@ -22,7 +22,7 @@ export async function qualify(
   research: string
 ): Promise<QualificationSchema> {
   const { object } = await generateObject({
-    model: 'openai/gpt-5',
+    model: 'openai:gpt-4o',
     schema: qualificationSchema,
     prompt: `Qualify the lead and give a reason for the qualification based on the following information: LEAD DATA: ${JSON.stringify(
       lead
@@ -40,7 +40,7 @@ export async function writeEmail(
   qualification: QualificationSchema
 ) {
   const { text } = await generateText({
-    model: 'openai/gpt-5',
+    model: 'openai:gpt-4o',
     prompt: `Write an email for a ${
       qualification.category
     } lead based on the following information: ${JSON.stringify(research)}`
@@ -195,7 +195,7 @@ const queryKnowledgeBase = tool({
  * This agent is used to research the lead and return a comprehensive report
  */
 export const researchAgent = new ToolLoopAgent({
-  model: 'openai/gpt-5',
+  model: 'openai:gpt-4o',
   instructions: `
   You are a researcher to find information about a lead. You are given a lead and you need to find information about the lead.
 
