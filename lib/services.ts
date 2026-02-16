@@ -22,7 +22,7 @@ export async function qualify(
   research: string
 ): Promise<QualificationSchema> {
   const { object } = await generateObject({
-    model: 'openai:gpt-4o',
+    model: 'openai/gpt-4o',
     schema: qualificationSchema,
     prompt: `Qualify the lead and give a reason for the qualification based on the following information: LEAD DATA: ${JSON.stringify(
       lead
@@ -40,7 +40,7 @@ export async function writeEmail(
   qualification: QualificationSchema
 ) {
   const { text } = await generateText({
-    model: 'openai:gpt-4o',
+    model: 'openai/gpt-4o',
     prompt: `Write an email for a ${
       qualification.category
     } lead based on the following information: ${JSON.stringify(research)}`
