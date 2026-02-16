@@ -195,7 +195,7 @@ const queryKnowledgeBase = tool({
  * This agent is used to research the lead and return a comprehensive report
  */
 export const researchAgent = new ToolLoopAgent({
-  model: 'openai:gpt-4o',
+  model: 'openai/gpt-4o',
   instructions: `
   You are a researcher to find information about a lead. You are given a lead and you need to find information about the lead.
 
