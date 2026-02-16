@@ -61,7 +61,7 @@ export function formatLeadNotification(
     name: string;
     email: string;
     phone?: string;
-    company: string;
+    company?: string;
     message: string;
   },
   qualification?: {
@@ -75,7 +75,7 @@ export function formatLeadNotification(
   message += `<b>Name:</b> ${lead.name}\n`;
   message += `<b>Email:</b> ${lead.email}\n`;
   if (lead.phone) message += `<b>Phone:</b> ${lead.phone}\n`;
-  message += `<b>Company:</b> ${lead.company}\n`;
+  if (lead.company) message += `<b>Company:</b> ${lead.company}\n`;
   message += `<b>Message:</b> ${lead.message}\n`;
 
   if (qualification) {
